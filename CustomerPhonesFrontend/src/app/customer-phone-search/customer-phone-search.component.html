@@ -1,0 +1,92 @@
+<div class="row">
+  
+    <div class="col-md-3">
+        <div class="card">
+          <div class="card-block">
+            <h2 class="card-text good-review-score float-left">Category</h2>
+          </div>
+          <div class="card-footer">
+            <h4>Select country </h4>
+
+            <div class="col p-3">
+              <div ngbDropdown class="d-inline-block">
+                <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>{{selectedCountry}}</button>
+                <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                  <button (click)="updateState(0,selectedState,country)"  ngbDropdownItem *ngFor="let country of countries">{{country}}</button>
+                </div>
+              </div>
+            </div>
+
+
+            <h4>Filter phones </h4>
+            <div class="p-3">
+              <div class="form-check">
+              
+                <input #allphones (change)="updateState(0,allphones.value,selectedCountry)" checked id="allphones"  value="undefined"  class="form-check-input" type="radio" name="state">
+                <label class="form-check-label text-center" for="allphones">
+                  All Phones
+                </label>
+              </div>
+              <div class="form-check">
+                
+                <input  #validphones (change)="updateState(0,validphones.value,selectedCountry)" id="validphones" value ="true" class="form-check-input" type="radio"  name="state" >
+                <label class="form-check-label text-center" for="validphones">
+                  Valid Phones Only
+                </label>
+              </div>
+              
+              <div class="form-check">
+                <input #invalidphones (change)="updateState(0,invalidphones.value,selectedCountry)" id="invalidphones" value ="false" class="form-check-input" type="radio" name="state">
+                <label class="form-check-label" for="invalidphones">
+                 Invalid Phones Only
+                </label>
+              </div>
+            </div>
+
+
+           
+
+          </div>      
+        </div>
+       
+        
+    </div>
+
+    <div class="col-md-9">
+        <div class="card">
+          <div class="card-block">
+            <h1 class="card-text good-review-score float-left">Result of Customers</h1>
+           
+          </div>
+          <div class="card-footer">
+            <p class="card-text text-center"> <label class="text-danger">Red phones</label> are not valid by supported Regex</p>
+          </div>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Country</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr  *ngFor="let customer of result">
+                    <th scope="row">{{customer.id}}</th>
+                    <td>{{customer.name}}</td>
+                    <td [class.text-danger]="!customer.valid" [class.text-success]="customer.valid">{{customer.phone}}</td>
+                    <td>{{customer.countryName}}</td>
+                  </tr>
+            </tbody>
+          </table>
+          <nav clas="text-center">
+            <ul class="pagination justify-content-center">
+              <li *ngFor="let dummy of numberOfPages,let index = index"  [class.active]="pageNumber==index" class="page-item" aria-current="page">
+                <span (click)="updatePageNumber(pageNumber=index)" class="page-link">{{index+1}}</span>
+              </li>
+            </ul>
+          </nav>
+          
+        </div>
+    </div>
+</div>

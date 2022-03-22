@@ -1,0 +1,17 @@
+.gitignore
+README.md
+api.module.ts
+api/api.ts
+api/basicErrorController.service.ts
+api/countryResource.service.ts
+api/customerResource.service.ts
+configuration.ts
+encoder.ts
+git_push.sh
+index.ts
+model/customerDto.ts
+model/customerDtoPage.ts
+model/modelAndView.ts
+model/models.ts
+model/view.ts
+variables.ts
